@@ -8,8 +8,8 @@ const connectDB = require('./server/config/db');
 
 
 const app = express();
-const PORT = process.env.PORT || 3000
-const localhost = "192.168.0.61";
+const PORT = process.env.PORT || 3000;
+const localhost = process.env.LOCALHOST;
 
 
 // CONNECT TO MONGODB
@@ -29,6 +29,7 @@ app.set('view engine', 'ejs');
 
 
 app.use('/', require('./server/routes/main'));
+app.use('/', require('./server/routes/admin'));
 
 app.listen(PORT, localhost, () => {
     console.log(`App is running on ${localhost} on ${PORT}`);

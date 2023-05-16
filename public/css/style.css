@@ -19,6 +19,7 @@ body {
   background-color: #faf5ee;
   background-image: url('/img/img-noise-361x370.png');
   margin: 0;
+  box-sizing: border-box;
 }
 
 a {
@@ -83,7 +84,7 @@ img {
 /* Hero Section */
 .hero-image {
   max-height: 528px;
-  filter: drop-shadow(0px 44px 34px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(10px 44px 24px rgba(0, 0, 0, 0.25));
   overflow: hidden;
   border-radius: var(--border-radius);
 }
@@ -152,6 +153,7 @@ img {
 
 .header__button button:hover {
   border: 2px solid var(--black);
+  cursor: pointer;
 }
 
 /* Header -> Navigation */
@@ -306,6 +308,7 @@ img {
   background-color: var(--black);
   padding: 4px 0;
   position: absolute;
+  height: 50px;
   left: 0;
   right: 0;
 }
@@ -322,11 +325,20 @@ img {
 
 #searchClose {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2.5px;
+  background-color: var(--black);
+  right: 20px;
+  padding: 6px 15px;
   color: var(--gray-light);
-  padding: 15px;
+  cursor: pointer;
+  margin-top: 5px;
+  border-radius: 10px; 
+  border: 2px solid transparent;
 }
+  #searchClose:hover {
+  border-radius: 10px;
+  border: 2px solid var(--gray-light);
+  }
 
 .pagination {
   font-size: 1.3rem;
@@ -338,4 +350,16 @@ img {
 
 .pagination:hover {
   color: var(--black);
+}
+
+
+@media (max-width: 1100px) {
+  #searchClose {
+    right: 40px;
+    background-color: white;
+    color: black;
+    border: 2px solid var(--black);
+
+  }
+
 }
