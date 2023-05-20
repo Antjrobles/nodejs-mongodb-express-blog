@@ -352,6 +352,25 @@ img {
   color: var(--black);
 }
 
+.logoutBtn {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  border: 0;
+  padding: 6px 12px;
+  background: none;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.logoutBtn:hover{
+    border-radius: 10px;
+    border: 2px solid var(--black);
+}
 
 @media (max-width: 1100px) {
   #searchClose {
@@ -359,7 +378,11 @@ img {
     background-color: white;
     color: black;
     border: 2px solid var(--black);
-
   }
+}
 
+/* CONTACT */
+.contact {
+  margin: 4rem;
+  text-align: center;
 }

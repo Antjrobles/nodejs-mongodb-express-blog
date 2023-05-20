@@ -2,132 +2,145 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
 
-
-
-// Routes
-
-
 /**
  * GET /
  * HOME
 */
-
 router.get('', async (req, res) => {
-
-    try {
-        const locals = {
-            title: "Nodejs Blog",
-            description: "A Blog created with Nodejs and Mongodb."
-        }
-
-        let perPage = 10;
-        let page = req.query.page || 1;
-
-        const data = await Post.aggregate([{ $sort: { createdAt: -1 } }])
-            .skip(perPage * page - perPage)
-            .limit(perPage)
-            .exec();
-
-        const count = await Post.count();
-        const nextPage = parseInt(page) + 1;
-        const hasNextPage = nextPage <= Math.ceil(count / perPage);
-
-        res.render('index', {
-            locals,
-            data,
-            current: page,
-            nextPage: hasNextPage ? nextPage : null,
-            // currentRoute: '/'
-        });
-
-    } catch (error) {
-        console.log(error);
+  try {
+    const locals = {
+      title: "NodeJs Blog",
+      description: "Simple Blog created with NodeJs, Express & MongoDb."
     }
-});
 
+    let perPage = 10;
+    let page = req.query.page || 1;
+
+    const data = await Post.aggregate([ { $sort: { createdAt: -1 } } ])
+    .skip(perPage * page - perPage)
+    .limit(perPage)
+    .exec();
+
+    const count = await Post.count();
+    const nextPage = parseInt(page) + 1;
+    const hasNextPage = nextPage <= Math.ceil(count / perPage);
+
+    res.render('index', { 
+      locals,
+      data,
+      current: page,
+      nextPage: hasNextPage ? nextPage : null,
+      currentRoute: '/'
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+
+});
 
 // router.get('', async (req, res) => {
-//     const locals = {
-//         title: "Nodejs Blog",
-//         description: "A Blog created with Nodejs and Mongodb."
-//     }
+//   const locals = {
+//     title: "NodeJs Blog",
+//     description: "Simple Blog created with NodeJs, Express & MongoDb."
+//   }
 
-//     try {
-//         const data = await Post.find();
-//         res.render('index', { locals, data });
-//     } catch (error) {
-//         console.log(error);
-//     } 
+//   try {
+//     const data = await Post.find();
+//     res.render('index', { locals, data });
+//   } catch (error) {
+//     console.log(error);
+//   }
+
 // });
 
+
 /**
  * GET /
- * POST: id
+ * Post :id
 */
-
 router.get('/post/:id', async (req, res) => {
+  try {
+    let slug = req.params.id;
 
-    try {
-        let slug = req.params.id;
-        const data = await Post.findById({ _id: slug });
+    const data = await Post.findById({ _id: slug });
 
-        const locals = {
-            title: data.title,
-            description: "A Blog created with Nodejs and Mongodb."
-        }
-        res.render('post', { locals, data });
-    } catch (error) {
-        console.log(error);
+    const locals = {
+      title: data.title,
+      description: "Simple Blog created with NodeJs, Express & MongoDb.",
     }
+
+    res.render('post', { 
+      locals,
+      data,
+      currentRoute: `/post/${slug}`
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
 });
 
+
 /**
- * GET /
- * POST: Search
+ * POST /
+ * Post - searchTerm
 */
 router.post('/search', async (req, res) => {
-    try {
-      const locals = {
-        title: "Search",
-        description: "Simple Blog created with NodeJs, Express & MongoDb."
-      }
-  
-      let searchTerm = req.body.searchTerm;
-      const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9 ]/g, "")
-  
-      const data = await Post.find({
-        $or: [
-          { title: { $regex: new RegExp(searchNoSpecialChar, 'i') }},
-          { body: { $regex: new RegExp(searchNoSpecialChar, 'i') }}
-        ]
-      });
-  
-      res.render("search", {
-        data,
-        locals
-      });
-  
-    } catch (error) {
-      console.log(error);
+  try {
+    const locals = {
+      title: "Seach",
+      description: "Simple Blog created with NodeJs, Express & MongoDb."
     }
-  
-  });
 
+    let searchTerm = req.body.searchTerm;
+    const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9 ]/g, "")
 
+    const data = await Post.find({
+      $or: [
+        { title: { $regex: new RegExp(searchNoSpecialChar, 'i') }},
+        { body: { $regex: new RegExp(searchNoSpecialChar, 'i') }}
+      ]
+    });
 
+    res.render("search", {
+      data,
+      locals,
+      currentRoute: '/'
+    });
 
-router.get('/about', (req, res) => {
-    res.render('about');
+  } catch (error) {
+    console.log(error);
+  }
+
 });
 
 
+/**
+ * GET /
+ * About
+*/
+router.get('/about', (req, res) => {
+  res.render('about', {
+    currentRoute: '/about'
+  });
+});
 
 
+/**
+ * GET /
+ * Contact
+    */
+router.get('/contact', (req, res) => {
+  res.render('contact', {
+ currentRoute: '/contact'
+ });
+});
 
 
-// function insertPostData() {
-//     Post.insertMany([
-//             {
+// function insertPostData () {
+//   Post.insertMany([
+//     {
 //       title: "Building APIs with Node.js",
 //       body: "Learn how to use Node.js to build RESTful APIs using frameworks like Express.js"
 //     },
@@ -161,15 +174,16 @@ router.get('/about', (req, res) => {
 //     },
 //     {
 //       title: "NodeJs Limiting Network Traffic",
-//       body: "Learn how to limit network traffic."
+//       body: "Learn how to limit netowrk traffic."
 //     },
 //     {
 //       title: "Learn Morgan - HTTP Request logger for NodeJs",
 //       body: "Learn Morgan."
 //     },
-//     ])
-// };
-// insertPostData(); 
+//   ])
+// }
+
+// insertPostData();
 
 
 module.exports = router;
