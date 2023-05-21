@@ -4,8 +4,7 @@
   "description": "A Blog made with nodejs and express",
   "main": "index.js",
   "scripts": {
-    "start": "app.js",
-    "dev": "nodemon app.js"
+    "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
