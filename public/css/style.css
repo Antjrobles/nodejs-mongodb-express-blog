@@ -386,3 +386,30 @@ img {
   margin: 4rem;
   text-align: center;
 }
+
+.contact__heading {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  animation: moveInLeft 1.5s ease-out;
+  text-align: center;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+
+
+  
