@@ -87,6 +87,7 @@ img {
   filter: drop-shadow(10px 44px 24px rgba(0, 0, 0, 0.25));
   overflow: hidden;
   border-radius: var(--border-radius);
+  animation: moveInLeft 1.5s ease-out;
 }
 
 /* Main Header */
