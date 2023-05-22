@@ -23,7 +23,7 @@ connectDB();
 app.use(express.urlencoded({ extended: true }));    // for parsing application/x-www-form-urlencoded
 app.use(express.json());                          // for parsing application/json
 app.use(cookieParser());                         // for cookies
-app.use(methodOverride('_method'));             // for PUT and DELETE requests
+app.use(methodOverride('_method'));             
 
 app.use(session({
   secret: 'keyboard cat',          // for signing the session ID cookie
@@ -35,7 +35,7 @@ app.use(session({
   //cookie: { maxAge: new Date ( Date.now() + (3600000) ) } 
 }));
 
-app.use(express.static('public'));           // for serving static files
+app.use(express.static('public')); 
 
 
 //Templating Engine 

@@ -5,8 +5,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const searchBar = document.querySelector('.searchBar');
   const searchInput = document.getElementById('searchInput');
   const searchClose = document.getElementById('searchClose');
-  const editor = document.getElementById('markdown-editor');
-  const preview = document.getElementById('preview');
+  
 
 
   for (var i = 0; i < allButtons.length; i++) {
@@ -25,30 +24,15 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 
+  const editor = document.querySelector('.markdown-editor');
+  const preview = document.querySelector('.markdown-preview');
+  console.log(editor)
 
 
-// SHOWDOWN, HTML TO MD IN PLACEHOLDER
-
-// const Showdown = require('showdown');
-
-// const converter = new Showdown.Converter();
+editor.addEventListener('input', function () {
 
 
-// document.addEventListener('DOMContentLoaded', function() {
-//   const editor = document.getElementById('markdown-editor');
-//   const preview = document.getElementById('preview');
-
-//   // Crear una instancia de Showdown.js
-//   const converter = new showdown.Converter();
-
-//   // Registrar evento de entrada de usuario
-//   editor.addEventListener('input', function() {
-//     const markdownContent = editor.innerText;
-//     const htmlContent = converter.makeHtml(markdownContent);
-//     preview.innerHTML = htmlContent;
-//   });
-// });
-
-
-
-
+  const texto = editor.value; 
+  preview.value = texto;
+  console.log(texto);
+});
