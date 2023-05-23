@@ -1,6 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', function(){
 
+
   const allButtons = document.querySelectorAll('.searchBtn');
   const searchBar = document.querySelector('.searchBar');
   const searchInput = document.getElementById('searchInput');
@@ -24,15 +25,3 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 
-  const editor = document.querySelector('.markdown-editor');
-  const preview = document.querySelector('.markdown-preview');
-  console.log(editor)
-
-
-editor.addEventListener('input', function () {
-
-
-  const texto = editor.value; 
-  preview.value = texto;
-  console.log(texto);
-});
