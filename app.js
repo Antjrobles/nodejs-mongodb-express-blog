@@ -59,7 +59,7 @@ app.use('/', require('./server/routes/main'));      //  for main routes
 app.use('/', require('./server/routes/admin'));    //   for admin routes
 
 app.listen(PORT, () => {
-  console.log(`App is running on ${localhost} on ${PORT}`);
+  console.log(`App is running on ${PORT}`);
 }); 
 
 
