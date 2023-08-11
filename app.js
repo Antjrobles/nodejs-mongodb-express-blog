@@ -19,7 +19,6 @@ const { isActiveRoute } = require('./server/helpers/routeHelpers');  // for acti
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const localhost = process.env.LOCALHOST;
 
 
 
@@ -59,7 +58,7 @@ app.locals.isActiveRoute = isActiveRoute;   // for active routes
 app.use('/', require('./server/routes/main'));      //  for main routes
 app.use('/', require('./server/routes/admin'));    //   for admin routes
 
-app.listen(PORT, localhost, () => {
+app.listen(PORT, () => {
   console.log(`App is running on ${localhost} on ${PORT}`);
 }); 
 
