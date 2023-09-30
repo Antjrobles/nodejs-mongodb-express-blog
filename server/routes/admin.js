@@ -11,7 +11,7 @@ const jwtSecret = process.env.JWT_SECRET;
 
 
 /**
- * 
+ *
  * Check Login
 */
 const authMiddleware = (req, res, next) => {
@@ -131,7 +131,7 @@ router.put('/edit-post/:id', authMiddleware, async (req, res) => {
 //   } catch (error) {
 //     console.log(error);
 //   }
-// }); 
+// });
 
 
 
